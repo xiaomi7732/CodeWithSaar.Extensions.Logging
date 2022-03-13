@@ -7,7 +7,7 @@ namespace CodeWithSaar.Extensions.Logging.Android
 {
     public static class AndroidLoggerExtensions
     {
-        public static ILoggingBuilder AddColorConsoleLogger(
+        public static ILoggingBuilder AddAndroid(
             this ILoggingBuilder builder)
         {
             builder.AddConfiguration();
