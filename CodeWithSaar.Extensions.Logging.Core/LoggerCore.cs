@@ -23,5 +23,11 @@ public sealed class LoggerCore : ILogger
         => _isEnabled(logLevel);
 
     public void Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception? exception, Func<TState, Exception?, string> formatter)
-        => _writeLog(logLevel, eventId, state, exception, (obj, ex) => formatter((TState)obj, ex));
+    {
+        if (!IsEnabled(logLevel))
+        {
+            return;
+        }
+        _writeLog(logLevel, eventId, state, exception, (obj, ex) => formatter((TState)obj, ex));
+    }
 }
