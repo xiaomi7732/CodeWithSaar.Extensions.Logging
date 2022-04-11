@@ -2,7 +2,7 @@
 using System.Collections.Concurrent;
 using Microsoft.Extensions.Logging;
 
-namespace CodeWithSaar.Extensions.Logging.Android;
+namespace CodeWithSaar.Extensions.Logging.Core;
 public abstract class LoggerProviderBase : ILoggerProvider, IDisposable
 {
     private readonly ConcurrentDictionary<string, LoggerCore> _loggers = new ConcurrentDictionary<string, LoggerCore>(StringComparer.OrdinalIgnoreCase);

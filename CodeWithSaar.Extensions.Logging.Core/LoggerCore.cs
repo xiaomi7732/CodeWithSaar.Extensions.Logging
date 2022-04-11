@@ -1,6 +1,6 @@
 using Microsoft.Extensions.Logging;
 
-namespace CodeWithSaar.Extensions.Logging.Android;
+namespace CodeWithSaar.Extensions.Logging.Core;
 public sealed class LoggerCore : ILogger
 {
     private readonly Action<LogLevel, EventId, object?, Exception?, Func<object, Exception?, string>> _writeLog;
