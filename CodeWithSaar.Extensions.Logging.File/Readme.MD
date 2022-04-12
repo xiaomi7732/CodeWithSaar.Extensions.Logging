@@ -117,7 +117,9 @@ Or it could be set to it's own:
 }
 ```
 
-There are more options than just the filename. Refer to [FileLoggerOptions.cs](https://github.com/xiaomi7732/CodeWithSaar.Extensions.Logging/blob/main/CodeWithSaar.Extensions.Logging.File/FileLoggerOptions.cs) for more properties to be customized like: `ShowFullCategoryName`, `TimestampFormat`, etc.
+### Other customizations
+
+There are more options than just the filename. All supports the settings from either the delegate in code or the configuration providers (like it in appsettings.json). Refer to [FileLoggerOptions.cs](https://github.com/xiaomi7732/CodeWithSaar.Extensions.Logging/blob/main/CodeWithSaar.Extensions.Logging.File/FileLoggerOptions.cs) for more properties to be customized like: `ShowFullCategoryName`, `TimestampFormat`, etc.
 
 ## Known limitations
 
