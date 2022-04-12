@@ -121,6 +121,15 @@ Or it could be set to it's own:
 
 There are more options than just the filename. All supports the settings from either the delegate in code or the configuration providers (like it in appsettings.json). Refer to [FileLoggerOptions.cs](https://github.com/xiaomi7732/CodeWithSaar.Extensions.Logging/blob/main/CodeWithSaar.Extensions.Logging.File/FileLoggerOptions.cs) for more properties to be customized like: `ShowFullCategoryName`, `TimestampFormat`, etc.
 
+### Others
+
+Please like this repo if you like this repo :-).
+
+Want to know how is this built? Check out the following videos:
+
+* [How to implement a custom logging provider for files (1/2)](https://youtu.be/3RUpYR4dZM4)
+* [How to implement a custom logging provider for files (2/2)](https://youtu.be/3Z3yemyikNc)
+
 ## Known limitations
 
 * Scope needs to be implemented;
