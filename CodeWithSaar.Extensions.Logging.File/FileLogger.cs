@@ -53,7 +53,7 @@ public sealed class FileLogger : ILogger, IDisposable
             prefix.Add(_categoryName);
         }
         prefix.Add(logLevel.ToString());
-        message = string.Format("[{0}] " + formatter(state, exception), string.Join(", ", prefix));
+        message = string.Format("[{0}] {1}", string.Join(", ", prefix), formatter(state, exception));
         _semaphore.Wait();
         try
         {
