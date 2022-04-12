@@ -107,4 +107,5 @@ Or it could be set to it's own:
 ## Known limitations
 
 * Scope is not supported yet;
+* There might be concurrency issues;
 * File writing performance is not optimized;
