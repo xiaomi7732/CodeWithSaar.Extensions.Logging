@@ -65,7 +65,44 @@ There are generally 2 ways to set log configurations.
     }
     ```
 
-### Set 
+### Set different logging levels
+
+Logging levels could be set in through `appsettings.json` / `appsettings.Development.json` or whatever the configuration providers in your project.
+
+It would take the default settings like this:
+
+```json
+    {
+        // Logging Information or above to file
+        "Logging": {
+            "LogLevel": {
+                "Default": "Debug"
+            }
+        }
+    }
+```
+
+Or it could be set to it's own:
+
+```json
+{
+    // Default logging level of Debug
+    "Logging": {
+        "LogLevel": {
+            "Default": "Debug"
+        },
+        "FileProvider":
+        {
+            // Output to output.v2.log file
+            "OutputFilePath": "output.v2.log",
+            // Specify a different logging level of Information for logs output to the file.
+            "LogLevel":{
+                "Default": "Information"
+            }
+        }
+    }
+}
+```
 
 ## Known limitations
 
