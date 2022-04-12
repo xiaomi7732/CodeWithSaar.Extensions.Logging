@@ -2,7 +2,7 @@
 
 A very easy to use file logger provider implementation for Microsoft.Extensions.Logging.
 
-Refer to the [Known-limitations](#Known-limitations) before you use this in production environment.
+Refer to the [Known-limitations](https://github.com/xiaomi7732/CodeWithSaar.Extensions.Logging/blob/main/CodeWithSaar.Extensions.Logging.File/Readme.MD#Known-limitations) before you use this in production environment.
 
 ## Getting Started
 
@@ -23,7 +23,7 @@ Refer to the [Known-limitations](#Known-limitations) before you use this in prod
     ...
     ```
 
-    Check out the [example project](../examples/WebAPIExample/).
+    Check out the [example project](https://github.com/xiaomi7732/CodeWithSaar.Extensions.Logging/tree/main/examples/WebAPIExample).
 
 * Run the application and see the log output to `output.log`, and you are expected to see log entries like this:
 
