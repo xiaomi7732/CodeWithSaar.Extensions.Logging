@@ -1,12 +1,12 @@
 # CodeWithSaar.Extensions.Logging.File
 
-A file logger provider implementation for Microsoft.Extensions.Logging. At this moment, this package is very easy to use in debugging environment.
+A very easy to use file logger provider implementation for Microsoft.Extensions.Logging.
 
-Refer to the [Known-limitations](#Known-limitations) before you use this in production.
+Refer to the [Known-limitations](#Known-limitations) before you use this in production environment.
 
 ## Getting Started
 
-* Add NuGet Package:
+* Add [NuGet Package](https://www.nuget.org/packages/CodeWithSaar.Extensions.Logging.File):
 
     ```csharp
     dotnet add package CodeWithSaar.Extensions.Logging.File
@@ -25,7 +25,20 @@ Refer to the [Known-limitations](#Known-limitations) before you use this in prod
 
     Check out the [example project](../examples/WebAPIExample/).
 
-* Run the application and see the log output to `output.log`.
+* Run the application and see the log output to `output.log`, and you are expected to see log entries like this:
+
+    ```csharp
+    [2022-04-12 12:12:42, Microsoft.Extensions.Hosting.Internal.Host, Debug] Hosting starting
+    [2022-04-12 12:12:42, Microsoft.Hosting.Lifetime, Information] Now listening on: https://localhost:7038
+    [2022-04-12 12:12:42, Microsoft.Hosting.Lifetime, Information] Now listening on: http://localhost:5125
+    [2022-04-12 12:12:42, Microsoft.Hosting.Lifetime, Information] Application started. Press Ctrl+C to shut down.
+    [2022-04-12 12:12:42, Microsoft.Hosting.Lifetime, Information] Hosting environment: Development
+    [2022-04-12 12:12:42, Microsoft.Hosting.Lifetime, Information] Content root path: D:\Repos\CodeWithSaar.Extensions.Logging\examples\WebAPIExample\
+    [2022-04-12 12:12:42, Microsoft.Extensions.Hosting.Internal.Host, Debug] Hosting started
+    [2022-04-12 12:12:44, Microsoft.Hosting.Lifetime, Information] Application is shutting down...
+    [2022-04-12 12:12:44, Microsoft.Extensions.Hosting.Internal.Host, Debug] Hosting stopping
+    [2022-04-12 12:12:44, Microsoft.Extensions.Hosting.Internal.Host, Debug] Hosting stopped
+    ```
 
 ## Customization
 
@@ -104,8 +117,9 @@ Or it could be set to it's own:
 }
 ```
 
+There are more options than just the filename. Refer to [FileLoggerOptions.cs](https://github.com/xiaomi7732/CodeWithSaar.Extensions.Logging/blob/main/CodeWithSaar.Extensions.Logging.File/FileLoggerOptions.cs) for more properties to be customized like: `ShowFullCategoryName`, `TimestampFormat`, etc.
+
 ## Known limitations
 
-* Scope is not supported yet;
-* There might be concurrency issues;
-* File writing performance is not optimized;
+* Scope needs to be implemented;
+* Writing performance needs to be benchmarked;
