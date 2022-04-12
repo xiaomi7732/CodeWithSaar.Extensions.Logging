@@ -44,7 +44,7 @@ There are generally 2 ways to set log configurations.
 
 * By configuration file (Typically, appsettings.json):
 
-    ```json
+    ```jsonc
     {
         // General logging
         "Logging": {
@@ -71,7 +71,7 @@ Logging levels could be set in through `appsettings.json` / `appsettings.Develop
 
 It would take the default settings like this:
 
-```json
+```jsonc
     {
         // Logging Information or above to file
         "Logging": {
@@ -84,7 +84,7 @@ It would take the default settings like this:
 
 Or it could be set to it's own:
 
-```json
+```jsonc
 {
     // Default logging level of Debug
     "Logging": {
