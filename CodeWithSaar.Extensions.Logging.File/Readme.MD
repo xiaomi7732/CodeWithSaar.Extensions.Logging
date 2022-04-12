@@ -123,7 +123,7 @@ There are more options than just the filename. All supports the settings from ei
 
 ### Others
 
-Please like this repo if you like this repo :-).
+Please star this repo if you like this repo :-).
 
 Want to know how is this built? Check out the following videos:
 
