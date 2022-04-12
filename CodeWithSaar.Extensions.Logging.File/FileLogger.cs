@@ -41,16 +41,26 @@ public sealed class FileLogger : ILogger, IDisposable
 
     public void Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception? exception, Func<TState, Exception?, string> formatter)
     {
-        string fileName = _getOptions().OutputFilePath;
-
+        FileLoggerOptions currentOptions = _getOptions();
+        string message;
+        List<string> prefix = new List<string>();
+        if (!string.IsNullOrEmpty(currentOptions.TimestampFormat))
+        {
+            prefix.Add(DateTime.Now.ToString(currentOptions.TimestampFormat));
+        }
+        if (currentOptions.ShowFullCategoryName)
+        {
+            prefix.Add(_categoryName);
+        }
+        prefix.Add(logLevel.ToString());
+        message = string.Format("[{0}] " + formatter(state, exception), string.Join(", ", prefix));
         _semaphore.Wait();
         try
         {
-            using (Stream outputStream = System.IO.File.Open(fileName, FileMode.Append))
+            using (Stream outputStream = System.IO.File.Open(currentOptions.OutputFilePath, FileMode.Append))
             using (StreamWriter streamWriter = new StreamWriter(outputStream))
             {
-                streamWriter.Write($"[{_categoryName}, {logLevel}] ");
-                streamWriter.WriteLine(formatter(state, exception));
+                streamWriter.WriteLine(message);
             }
         }
         finally
