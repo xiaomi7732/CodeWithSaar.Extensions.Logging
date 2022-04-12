@@ -5,7 +5,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <IsPackable>true</IsPackable>
-    <Version>1.0.0-beta3</Version>
+    <Version>1.0.0-beta4</Version>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -19,11 +19,13 @@
     <RespositoryType>git</RespositoryType>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageReadmeFile>Readme.MD</PackageReadmeFile>
+    <PackageIcon>icon.png</PackageIcon>
   </PropertyGroup>
 
 
   <ItemGroup>
     <None Include="./Readme.MD" Pack="true" PackagePath="\" />
+    <None Include="../icon.png" Pack="true" PackagePath="\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Logging.Configuration" Version="6.0.0" />
