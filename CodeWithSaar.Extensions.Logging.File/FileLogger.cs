@@ -2,10 +2,12 @@ using Microsoft.Extensions.Logging;
 
 namespace CodeWithSaar.Extensions.Logging.File;
 
-public class FileLogger : ILogger
+public sealed class FileLogger : ILogger, IDisposable
 {
+    private bool _isDisposed = false;
     private readonly string _categoryName;
     private readonly Func<FileLoggerOptions> _getOptions;
+    private readonly SemaphoreSlim _semaphore = new SemaphoreSlim(1, 1);
 
     public FileLogger(string categoryName, Func<FileLoggerOptions> getOptions)
     {
@@ -24,6 +26,16 @@ public class FileLogger : ILogger
         return new ScopeStub();
     }
 
+    public void Dispose()
+    {
+        if (_isDisposed)
+        {
+            return;
+        }
+        _isDisposed = true;
+        _semaphore.Dispose();
+    }
+
     public bool IsEnabled(LogLevel logLevel)
         => logLevel != LogLevel.None;
 
@@ -31,11 +43,19 @@ public class FileLogger : ILogger
     {
         string fileName = _getOptions().OutputFilePath;
 
-        using (Stream outputStream = System.IO.File.Open(fileName, FileMode.Append))
-        using (StreamWriter streamWriter = new StreamWriter(outputStream))
+        _semaphore.Wait();
+        try
         {
-            streamWriter.Write($"[{_categoryName}, {logLevel}] ");
-            streamWriter.WriteLine(formatter(state, exception));
+            using (Stream outputStream = System.IO.File.Open(fileName, FileMode.Append))
+            using (StreamWriter streamWriter = new StreamWriter(outputStream))
+            {
+                streamWriter.Write($"[{_categoryName}, {logLevel}] ");
+                streamWriter.WriteLine(formatter(state, exception));
+            }
+        }
+        finally
+        {
+            _semaphore.Release();
         }
     }
 }
