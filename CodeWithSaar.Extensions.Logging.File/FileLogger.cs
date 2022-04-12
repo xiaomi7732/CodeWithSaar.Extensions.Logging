@@ -2,14 +2,17 @@ using Microsoft.Extensions.Logging;
 
 namespace CodeWithSaar.Extensions.Logging.File;
 
-public sealed class FileLogger : ILogger, IDisposable
+internal sealed class FileLogger : ILogger, IDisposable
 {
     private bool _isDisposed = false;
     private readonly string _categoryName;
     private readonly Func<FileLoggerOptions> _getOptions;
-    private readonly SemaphoreSlim _semaphore = new SemaphoreSlim(1, 1);
+    private readonly IFileLoggerWriter _fileLoggerWriter;
 
-    public FileLogger(string categoryName, Func<FileLoggerOptions> getOptions)
+    public FileLogger(
+        string categoryName,
+        Func<FileLoggerOptions> getOptions,
+        IFileLoggerWriter fileLoggerWriter)
     {
         if (string.IsNullOrEmpty(categoryName))
         {
@@ -18,6 +21,7 @@ public sealed class FileLogger : ILogger, IDisposable
 
         _categoryName = categoryName;
         _getOptions = getOptions ?? throw new ArgumentNullException(nameof(getOptions));
+        _fileLoggerWriter = fileLoggerWriter ?? throw new ArgumentNullException(nameof(fileLoggerWriter));
     }
 
     public IDisposable BeginScope<TState>(TState state)
@@ -33,7 +37,6 @@ public sealed class FileLogger : ILogger, IDisposable
             return;
         }
         _isDisposed = true;
-        _semaphore.Dispose();
     }
 
     public bool IsEnabled(LogLevel logLevel)
@@ -54,18 +57,6 @@ public sealed class FileLogger : ILogger, IDisposable
         }
         prefix.Add(logLevel.ToString());
         message = string.Format("[{0}] {1}", string.Join(", ", prefix), formatter(state, exception));
-        _semaphore.Wait();
-        try
-        {
-            using (Stream outputStream = System.IO.File.Open(currentOptions.OutputFilePath, FileMode.Append))
-            using (StreamWriter streamWriter = new StreamWriter(outputStream))
-            {
-                streamWriter.WriteLine(message);
-            }
-        }
-        finally
-        {
-            _semaphore.Release();
-        }
+        _fileLoggerWriter.WriteLine(message);
     }
 }
