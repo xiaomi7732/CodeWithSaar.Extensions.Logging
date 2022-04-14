@@ -1,6 +1,6 @@
 namespace CodeWithSaar.Extensions.Logging.File
 {
-    public interface IFileLoggerWriter
+    public interface ILoggerWriter
     {
         void WriteLine(string line);
     }

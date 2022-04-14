@@ -7,12 +7,12 @@ internal sealed class FileLogger : ILogger, IDisposable
     private bool _isDisposed = false;
     private readonly string _categoryName;
     private readonly Func<FileLoggerOptions> _getOptions;
-    private readonly IFileLoggerWriter _fileLoggerWriter;
+    private readonly ILoggerWriter _loggerWriter;
 
     public FileLogger(
         string categoryName,
         Func<FileLoggerOptions> getOptions,
-        IFileLoggerWriter fileLoggerWriter)
+        ILoggerWriter loggerWriter)
     {
         if (string.IsNullOrEmpty(categoryName))
         {
@@ -21,7 +21,7 @@ internal sealed class FileLogger : ILogger, IDisposable
 
         _categoryName = categoryName;
         _getOptions = getOptions ?? throw new ArgumentNullException(nameof(getOptions));
-        _fileLoggerWriter = fileLoggerWriter ?? throw new ArgumentNullException(nameof(fileLoggerWriter));
+        _loggerWriter = loggerWriter ?? throw new ArgumentNullException(nameof(loggerWriter));
     }
 
     public IDisposable BeginScope<TState>(TState state)
@@ -57,6 +57,6 @@ internal sealed class FileLogger : ILogger, IDisposable
         }
         prefix.Add(logLevel.ToString());
         message = string.Format("[{0}] {1}", string.Join(", ", prefix), formatter(state, exception));
-        _fileLoggerWriter.WriteLine(message);
+        _loggerWriter.WriteLine(message);
     }
 }

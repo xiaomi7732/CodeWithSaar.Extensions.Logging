@@ -3,7 +3,7 @@ using System.Threading.Channels;
 
 namespace CodeWithSaar.Extensions.Logging.File;
 
-internal sealed class FileLoggerWriter : IFileLoggerWriter, IDisposable
+internal sealed class FileLoggerWriter : ILoggerWriter, IDisposable
 {
     private const int DefaultFileStreamBufferSize = 4096;
     private bool _isDisposed = false;
