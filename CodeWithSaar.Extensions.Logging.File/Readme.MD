@@ -1,6 +1,6 @@
 # CodeWithSaar.Extensions.Logging.File
 
-A very easy to use file logger provider implementation for Microsoft.Extensions.Logging.
+`CodeWithSaar.Extensions.Logging.File` is a very easy to use, lightweight file logger provider implementation for Microsoft.Extensions.Logging. Start to use it with ASP.NET Core by one line of code.
 
 Refer to the [Known-limitations](https://github.com/xiaomi7732/CodeWithSaar.Extensions.Logging/blob/main/CodeWithSaar.Extensions.Logging.File/Readme.MD#Known-limitations) before you use this in production environment.
 
@@ -39,6 +39,21 @@ Refer to the [Known-limitations](https://github.com/xiaomi7732/CodeWithSaar.Exte
     [2022-04-12 12:12:44, Microsoft.Extensions.Hosting.Internal.Host, Debug] Hosting stopping
     [2022-04-12 12:12:44, Microsoft.Extensions.Hosting.Internal.Host, Debug] Hosting stopped
     ```
+
+## Benchmark Result
+
+``` ini
+BenchmarkDotNet=v0.13.1, OS=Windows 10.0.22000
+Intel Core i7-9700 CPU 3.00GHz, 1 CPU, 8 logical and 8 physical cores
+.NET SDK=6.0.300-preview.22154.4
+  [Host]     : .NET 6.0.2 (6.0.222.6406), X64 RyuJIT
+  DefaultJob : .NET 6.0.2 (6.0.222.6406), X64 RyuJIT
+```
+
+| Method |     Mean |    Error |   StdDev |
+|------- |---------:|---------:|---------:|
+|    Log | 851.3 ns | 21.19 ns | 62.47 ns |
+
 
 ## Customization
 
