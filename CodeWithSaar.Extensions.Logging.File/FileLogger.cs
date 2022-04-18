@@ -27,7 +27,7 @@ internal sealed class FileLogger : ILogger, IDisposable
     public IDisposable BeginScope<TState>(TState state)
     {
         // Scope is not supported... yet
-        return new ScopeStub();
+        return NullScopeImp.Instance;
     }
 
     public void Dispose()
