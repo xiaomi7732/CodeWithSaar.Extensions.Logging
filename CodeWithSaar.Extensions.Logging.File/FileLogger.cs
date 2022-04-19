@@ -49,7 +49,9 @@ internal sealed class FileLogger : ILogger, IDisposable
         List<string> prefix = new List<string>();
         if (!string.IsNullOrEmpty(currentOptions.TimestampFormat))
         {
-            prefix.Add(DateTime.Now.ToString(currentOptions.TimestampFormat));
+            prefix.Add(currentOptions.UseUTCTimestamp ?
+                DateTime.UtcNow.ToString(currentOptions.TimestampFormat) :
+                DateTime.Now.ToString(currentOptions.TimestampFormat));
         }
         if (currentOptions.ShowFullCategoryName)
         {

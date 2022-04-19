@@ -74,7 +74,9 @@ internal sealed class FileLoggerWriter : ILoggerWriter, IDisposable
 
     private void EnsureFilePathCurrent()
     {
-        string currentFileName = _getOptions().OutputFilePath;
+        FileLoggerOptions currentOptions = _getOptions();
+        string currentFileName = currentOptions.OutputFilePath;
+        bool autoFlush = currentOptions.AutoFlush;
 
         // New file
         if (string.IsNullOrEmpty(_lastUsedFileName))
@@ -83,6 +85,7 @@ internal sealed class FileLoggerWriter : ILoggerWriter, IDisposable
             {
                 Stream outputStream = System.IO.File.Open(currentFileName, FileMode.Append, FileAccess.Write, FileShare.Read);
                 _loggingWriter = new StreamWriter(outputStream, Encoding.UTF8, DefaultFileStreamBufferSize, leaveOpen: false);
+                _loggingWriter.AutoFlush = autoFlush;
             }
             _lastUsedFileName = currentFileName;
             return;
@@ -97,6 +100,7 @@ internal sealed class FileLoggerWriter : ILoggerWriter, IDisposable
                 Stream outputStream = System.IO.File.Open(currentFileName, FileMode.Append, FileAccess.Write, FileShare.Read);
                 _loggingWriter?.Dispose();
                 _loggingWriter = new StreamWriter(outputStream, Encoding.UTF8, DefaultFileStreamBufferSize, leaveOpen: false);
+                _loggingWriter.AutoFlush = autoFlush;
                 _lastUsedFileName = currentFileName;
             }
             return;
