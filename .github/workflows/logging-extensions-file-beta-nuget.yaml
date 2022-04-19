@@ -3,7 +3,7 @@ name: CodeWithSaar.Extensions.Logging.File Beta Package
 on:
   push:
     tags:
-      - "*"
+      - '*'
 jobs:
   build:
     runs-on: ubuntu-latest
