@@ -3,7 +3,10 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddLogging(loggingBuilder =>
 {
-    loggingBuilder.AddFile();
+    loggingBuilder.AddFile(opt =>
+    {
+        opt.UseUTCTimestamp = false;
+    });
 });
 
 builder.Services.AddControllers();

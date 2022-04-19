@@ -16,9 +16,9 @@ public sealed class FileLoggerOptions
     public bool ShowFullCategoryName { get; set; } = true;
 
     /// <summary>
-    /// Gets or sets the timestamp format. Default to yyyy-MM-dd HH:mm:ss
+    /// Gets or sets the timestamp format. Default to "O". Refer to https://docs.microsoft.com/en-us/dotnet/standard/base-types/standard-date-and-time-format-strings#the-round-trip-o-o-format-specifier for more details.
     /// </summary>
-    public string TimestampFormat { get; set; } = "yyyy-MM-dd HH:mm:ss";
+    public string TimestampFormat { get; set; } = "O";
 
     /// <summary>
     /// Gets or sets whether to use UTC for timestamp or not.
