@@ -148,4 +148,4 @@ Want to know how is this built? Check out the following videos:
 ## Known limitations
 
 * Scope needs to be implemented;
-* Writing performance needs to be benchmarked;
+
