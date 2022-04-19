@@ -3,7 +3,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddLogging(loggingBuilder =>
 {
-    loggingBuilder.AddFile(opt => opt.OutputFilePath = "newfilename.log");
+    loggingBuilder.AddFile();
 });
 
 builder.Services.AddControllers();
