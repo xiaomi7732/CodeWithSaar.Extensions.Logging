@@ -9,7 +9,7 @@ Refer to the [Known-limitations](https://github.com/xiaomi7732/CodeWithSaar.Exte
 * Add [NuGet Package](https://www.nuget.org/packages/CodeWithSaar.Extensions.Logging.File):
 
     ```csharp
-    dotnet add package CodeWithSaar.Extensions.Logging.File
+    dotnet add package CodeWithSaar.Extensions.Logging.File --prerelease
     ```
 
 * In ASP.NET Core project, enable the logging provider:
