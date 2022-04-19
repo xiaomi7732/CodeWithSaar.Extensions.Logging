@@ -22,6 +22,42 @@
                 "reveal": "silent"
             },
             "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "build",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/CodeWithSaar.Extensions.Logging.File.Benchmark/CodeWithSaar.Extensions.Logging.File.Benchmark.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "publish",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "publish",
+                "${workspaceFolder}/CodeWithSaar.Extensions.Logging.File.Benchmark/CodeWithSaar.Extensions.Logging.File.Benchmark.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "watch",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "watch",
+                "run",
+                "--project",
+                "${workspaceFolder}/CodeWithSaar.Extensions.Logging.File.Benchmark/CodeWithSaar.Extensions.Logging.File.Benchmark.csproj"
+            ],
+            "problemMatcher": "$msCompile"
         }
     ]
 }
