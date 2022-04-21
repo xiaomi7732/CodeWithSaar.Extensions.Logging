@@ -149,3 +149,7 @@ Want to know how is this built? Check out the following videos:
 
 * Scope needs to be implemented;
 
+## Disclosure
+
+* I am current working for Micorsoft.
+* This is NOT a Microsoft project.
