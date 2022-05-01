@@ -55,7 +55,9 @@ internal class FileLoggerFormatter
     {
         bool singleLine = true;
         int eventId = logEntry.EventId.Id;
-        bool fullCategoryName = _getOptions().ShowFullCategoryName;
+        FileLoggerOptions options = _getOptions();
+        bool fullCategoryName = options.ShowFullCategoryName;
+        bool autoFlush = options.AutoFlush;
         Exception? exception = logEntry.Exception;
 
         // Example:
@@ -99,6 +101,11 @@ internal class FileLoggerFormatter
         if (singleLine)
         {
             textWriter.Write(Environment.NewLine);
+        }
+        
+        if(autoFlush)
+        {
+            textWriter.Flush();
         }
     }
 

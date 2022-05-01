@@ -28,7 +28,6 @@ public sealed class FileLoggerProvider : ILoggerProvider
     {
         return _loggers.GetOrAdd(categoryName, key => new FileLogger(
             categoryName,
-            GetCurrentOptions,
             new FileLoggerFormatter(GetCurrentOptions),
             _fileLoggerWriter));
     }
