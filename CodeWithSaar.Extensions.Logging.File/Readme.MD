@@ -21,7 +21,7 @@
     ...
     ```
 
-    Check out the [example project](https://github.com/xiaomi7732/CodeWithSaar.Extensions.Logging/tree/main/examples/WebAPIExample).
+    Check out the [example project](https://github.com/xiaomi7732/CodeWithSaar.Extensions.Logging/tree/main/examples/WebAPIExample) for WebAPI.
 
 * Run the application and see the log output to `output.log`, and you are expected to see log entries like this:
 
@@ -52,6 +52,11 @@ Intel Core i7-9700 CPU 3.00GHz, 1 CPU, 8 logical and 8 physical cores
 |------- |---------:|---------:|---------:|
 |    Log | 851.3 ns | 21.19 ns | 62.47 ns |
 
+
+## Example projects
+
+* [ASP.NET 6 WebAPI](https://github.com/xiaomi7732/CodeWithSaar.Extensions.Logging/tree/main/examples/WebAPIExample)
+* [.NET Core 3.1 Worker (Console)](https://github.com/xiaomi7732/CodeWithSaar.Extensions.Logging/tree/main/examples/NetCore31Console)
 
 ## Customization
 
@@ -149,5 +154,5 @@ Want to know how is this built? Check out the following videos:
 
 ## Disclosure
 
-* I am current working for Micorsoft.
+* I am current working for Microsoft.
 * This is NOT a Microsoft project.
