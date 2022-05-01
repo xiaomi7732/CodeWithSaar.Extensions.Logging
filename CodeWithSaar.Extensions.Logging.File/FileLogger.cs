@@ -1,3 +1,4 @@
+using System.Text;
 using Microsoft.Extensions.Logging;
 
 namespace CodeWithSaar.Extensions.Logging.File;
@@ -6,12 +7,12 @@ internal sealed class FileLogger : ILogger, IDisposable
 {
     private bool _isDisposed = false;
     private readonly string _categoryName;
-    private readonly Func<FileLoggerOptions> _getOptions;
+    private readonly FileLoggerFormatter _formatter;
     private readonly ILoggerWriter _loggerWriter;
 
     public FileLogger(
         string categoryName,
-        Func<FileLoggerOptions> getOptions,
+        FileLoggerFormatter formatter,
         ILoggerWriter loggerWriter)
     {
         if (string.IsNullOrEmpty(categoryName))
@@ -20,7 +21,7 @@ internal sealed class FileLogger : ILogger, IDisposable
         }
 
         _categoryName = categoryName;
-        _getOptions = getOptions ?? throw new ArgumentNullException(nameof(getOptions));
+        _formatter = formatter ?? throw new ArgumentNullException(nameof(formatter));
         _loggerWriter = loggerWriter ?? throw new ArgumentNullException(nameof(loggerWriter));
     }
 
@@ -39,26 +40,39 @@ internal sealed class FileLogger : ILogger, IDisposable
         _isDisposed = true;
     }
 
+    [ThreadStatic]
+    private static StringWriter? t_stringWriter;
+
     public bool IsEnabled(LogLevel logLevel)
         => logLevel != LogLevel.None;
 
     public void Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception? exception, Func<TState, Exception?, string> formatter)
     {
-        FileLoggerOptions currentOptions = _getOptions();
-        string message;
-        List<string> prefix = new List<string>();
-        if (!string.IsNullOrEmpty(currentOptions.TimestampFormat))
+        if (!IsEnabled(logLevel))
         {
-            prefix.Add(currentOptions.UseUTCTimestamp ?
-                DateTime.UtcNow.ToString(currentOptions.TimestampFormat) :
-                DateTime.Now.ToString(currentOptions.TimestampFormat));
+            return;
         }
-        if (currentOptions.ShowFullCategoryName)
+
+        if (formatter is null)
         {
-            prefix.Add(_categoryName);
+            throw new ArgumentNullException(nameof(formatter));
         }
-        prefix.Add(logLevel.ToString());
-        message = string.Format("[{0}] {1}", string.Join(", ", prefix), formatter(state, exception));
-        _loggerWriter.WriteLine(message);
+
+        t_stringWriter ??= new StringWriter();
+        LogEntry<TState> logEntry = new LogEntry<TState>(logLevel, _categoryName, eventId, state, exception, formatter);
+        _formatter.Write(in logEntry, t_stringWriter);
+
+        StringBuilder sb = t_stringWriter.GetStringBuilder();
+        if (sb.Length == 0)
+        {
+            return;
+        }
+        string computedAnsiString = sb.ToString();
+        sb.Clear();
+        if (sb.Capacity > 1024)
+        {
+            sb.Capacity = 1024;
+        }
+        _loggerWriter.WriteContent(computedAnsiString);
     }
 }
