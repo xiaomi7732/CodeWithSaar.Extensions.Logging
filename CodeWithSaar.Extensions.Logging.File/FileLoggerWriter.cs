@@ -35,12 +35,12 @@ internal sealed class FileLoggerWriter : ILoggerWriter, IDisposable
                 string message = "Unexpected exception happened in FileLogger Provider. " + ex.ToString();
                 if (_loggingWriter is not null)
                 {
-                    await _loggingWriter.WriteLineAsync(message).ConfigureAwait(false);
+                    await _loggingWriter.WriteAsync(message).ConfigureAwait(false);
                 }
                 else
                 {
                     // Just in case:
-                    Console.WriteLine(message);
+                    Console.Write(message);
                 }
             }
         });
@@ -54,20 +54,20 @@ internal sealed class FileLoggerWriter : ILoggerWriter, IDisposable
         return this;
     }
 
-    public void WriteLine(string line)
+    public void WriteContent(string content)
     {
-        _channel.Writer.TryWrite(line);
+        _channel.Writer.TryWrite(content);
     }
 
     private async Task RealizeLogAsync(CancellationToken cancellationToken)
     {
         while (await _channel.Reader.WaitToReadAsync(cancellationToken).ConfigureAwait(false))
         {
-            string line = await _channel.Reader.ReadAsync().ConfigureAwait(false);
+            string content = await _channel.Reader.ReadAsync().ConfigureAwait(false);
             EnsureFilePathCurrent();
             if (_loggingWriter is not null)
             {
-                await _loggingWriter.WriteLineAsync(line);
+                await _loggingWriter.WriteAsync(content);
             }
         }
     }
