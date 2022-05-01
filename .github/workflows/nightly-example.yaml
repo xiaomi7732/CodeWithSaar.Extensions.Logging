@@ -24,3 +24,7 @@ jobs:
       run: dotnet restore ./examples/WebAPIExample/WebAPIExample.csproj
     - name: Build
       run: dotnet build --no-restore ./examples/WebAPIExample/WebAPIExample.csproj
+    - name: Restore dependencies
+      run: dotnet restore ./examples/NetCore31Console/NetCore31Console.csproj
+    - name: Build
+      run: dotnet build --no-restore ./examples/NetCore31Console/NetCore31Console.csproj
