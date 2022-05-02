@@ -25,14 +25,7 @@ public class FileLoggerBenchmark
     [GlobalCleanup(Target = nameof(Log))]
     public void CleanUp()
     {
-        try
-        {
-            _logger.Dispose();
-            _logWriter.Dispose();
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine(ex.ToString());
-        }
+        _logger.Dispose();
+        _logWriter.Dispose();
     }
 }
