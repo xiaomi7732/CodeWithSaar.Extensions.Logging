@@ -19,8 +19,19 @@ namespace NetCore31Console
         {
             while (!stoppingToken.IsCancellationRequested)
             {
-                _logger.LogInformation("Logging info!");
-                await Task.Delay(TimeSpan.FromSeconds(5));
+                try
+                {
+                    _logger.LogInformation("Logging info!");
+                    await Task.Delay(TimeSpan.FromSeconds(5));
+                    if (DateTime.Now.Second % 2 == 0)
+                    {
+                        throw new InvalidOperationException("Nope");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogError(ex, "Some error happened!");
+                }
             }
         }
     }

@@ -7,12 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="CodeWithSaar.Extensions.Logging.File" Version="1.0.0-beta5" />
+    <!-- <PackageReference Include="CodeWithSaar.Extensions.Logging.File" Version="1.0.0-beta5" /> -->
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>
 
   <ItemGroup>
-    <!-- <ProjectReference Include="..\..\CodeWithSaar.Extensions.Logging.File\CodeWithSaar.Extensions.Logging.File.csproj" /> -->
+    <ProjectReference Include="..\..\CodeWithSaar.Extensions.Logging.File\CodeWithSaar.Extensions.Logging.File.csproj" />
   </ItemGroup>
 
 </Project>

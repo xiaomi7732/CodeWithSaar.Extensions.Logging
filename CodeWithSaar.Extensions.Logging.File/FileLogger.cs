@@ -38,6 +38,12 @@ internal sealed class FileLogger : ILogger, IDisposable
             return;
         }
         _isDisposed = true;
+
+        t_stringWriter?.Dispose();
+        if (_loggerWriter is IDisposable disposableLogWriter)
+        {
+            disposableLogWriter.Dispose();
+        }
     }
 
     [ThreadStatic]

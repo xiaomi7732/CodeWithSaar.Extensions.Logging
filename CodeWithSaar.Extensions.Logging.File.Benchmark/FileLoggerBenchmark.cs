@@ -11,7 +11,7 @@ public class FileLoggerBenchmark
     {
         FileLoggerWriter writer = FileLoggerWriter.Instance;
         _logWriter = writer;
-        _logger = new FileLogger("Benchmark", () => new FileLoggerOptions(), writer);
+        _logger = new FileLogger("Benchmark", new FileLoggerFormatter(() => new FileLoggerOptions()), writer);
     }
 
     [Benchmark]
@@ -25,7 +25,14 @@ public class FileLoggerBenchmark
     [GlobalCleanup(Target = nameof(Log))]
     public void CleanUp()
     {
-        _logger.Dispose();
-        _logWriter.Dispose();
+        try
+        {
+            _logger.Dispose();
+            _logWriter.Dispose();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.ToString());
+        }
     }
 }
