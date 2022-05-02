@@ -117,8 +117,27 @@ internal sealed class FileLoggerWriter : ILoggerWriter, IDisposable
         }
 
         _isDisposed = true;
-        _channel.Writer.TryComplete();
-        _loggingWriter?.Dispose();
+
+        int attempt = 3;
+        while (!_channel.Writer.TryComplete() && attempt-- > 0)
+        {
+            Thread.Sleep(TimeSpan.FromSeconds(1));
+        }
+        
+        attempt = 3;
+        while (attempt-- > 0)
+        {
+            try
+            {
+                _loggingWriter?.Dispose();
+                Thread.Sleep(TimeSpan.FromSeconds(1));
+            }
+            catch (InvalidOperationException)
+            {
+                // Best effort upon disposing.
+            }
+            break;
+        }
 
     }
 }

@@ -25,17 +25,17 @@
 
 * Run the application and see the log output to `output.log`, and you are expected to see log entries like this:
 
-    ```csharp
-    [2022-04-12 12:12:42, Microsoft.Extensions.Hosting.Internal.Host, Debug] Hosting starting
-    [2022-04-12 12:12:42, Microsoft.Hosting.Lifetime, Information] Now listening on: https://localhost:7038
-    [2022-04-12 12:12:42, Microsoft.Hosting.Lifetime, Information] Now listening on: http://localhost:5125
-    [2022-04-12 12:12:42, Microsoft.Hosting.Lifetime, Information] Application started. Press Ctrl+C to shut down.
-    [2022-04-12 12:12:42, Microsoft.Hosting.Lifetime, Information] Hosting environment: Development
-    [2022-04-12 12:12:42, Microsoft.Hosting.Lifetime, Information] Content root path: D:\Repos\CodeWithSaar.Extensions.Logging\examples\WebAPIExample\
-    [2022-04-12 12:12:42, Microsoft.Extensions.Hosting.Internal.Host, Debug] Hosting started
-    [2022-04-12 12:12:44, Microsoft.Hosting.Lifetime, Information] Application is shutting down...
-    [2022-04-12 12:12:44, Microsoft.Extensions.Hosting.Internal.Host, Debug] Hosting stopping
-    [2022-04-12 12:12:44, Microsoft.Extensions.Hosting.Internal.Host, Debug] Hosting stopped
+    ```log
+    2022-05-01T15:01:06.6811783-07:00 dbug: Microsoft.Extensions.Hosting.Internal.Host[1] Hosting starting
+    2022-05-01T15:01:09.7265572-07:00 info: Microsoft.Hosting.Lifetime[14] Now listening on: https://localhost:7038
+    2022-05-01T15:01:09.7269258-07:00 info: Microsoft.Hosting.Lifetime[14] Now listening on: http://localhost:5125
+    2022-05-01T15:01:09.7281242-07:00 info: Microsoft.Hosting.Lifetime[0] Application started. Press Ctrl+C to shut down.
+    2022-05-01T15:01:09.7283214-07:00 info: Microsoft.Hosting.Lifetime[0] Hosting environment: Development
+    2022-05-01T15:01:09.7283445-07:00 info: Microsoft.Hosting.Lifetime[0] Content root path: D:\Repos\CodeWithSaar.Extensions.Logging\examples\WebAPIExample\
+    2022-05-01T15:01:09.7283522-07:00 dbug: Microsoft.Extensions.Hosting.Internal.Host[2] Hosting started
+    2022-05-01T15:01:13.9569295-07:00 info: Microsoft.Hosting.Lifetime[0] Application is shutting down...
+    2022-05-01T15:01:13.9580170-07:00 dbug: Microsoft.Extensions.Hosting.Internal.Host[3] Hosting stopping
+    2022-05-01T15:01:13.9705049-07:00 dbug: Microsoft.Extensions.Hosting.Internal.Host[4] Hosting stopped
     ```
 
 ## Benchmark Result
@@ -43,15 +43,14 @@
 ``` ini
 BenchmarkDotNet=v0.13.1, OS=Windows 10.0.22000
 Intel Core i7-9700 CPU 3.00GHz, 1 CPU, 8 logical and 8 physical cores
-.NET SDK=6.0.300-preview.22154.4
-  [Host]     : .NET 6.0.2 (6.0.222.6406), X64 RyuJIT
-  DefaultJob : .NET 6.0.2 (6.0.222.6406), X64 RyuJIT
+.NET SDK=6.0.300-preview.22204.3
+  [Host]     : .NET 6.0.3 (6.0.322.12309), X64 RyuJIT
+  DefaultJob : .NET 6.0.3 (6.0.322.12309), X64 RyuJIT
 ```
 
 | Method |     Mean |    Error |   StdDev |
 |------- |---------:|---------:|---------:|
-|    Log | 851.3 ns | 21.19 ns | 62.47 ns |
-
+|    Log | 750.3 ns | 14.14 ns | 13.22 ns |
 
 ## Example projects
 

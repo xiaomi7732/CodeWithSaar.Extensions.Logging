@@ -11,7 +11,7 @@ public class FileLoggerBenchmark
     {
         FileLoggerWriter writer = FileLoggerWriter.Instance;
         _logWriter = writer;
-        _logger = new FileLogger("Benchmark", () => new FileLoggerOptions(), writer);
+        _logger = new FileLogger("Benchmark", new FileLoggerFormatter(() => new FileLoggerOptions()), writer);
     }
 
     [Benchmark]
