@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="CodeWithSaar.Extensions.Logging.File" Version="1.0.0-beta6" />
+    <PackageReference Include="CodeWithSaar.Extensions.Logging.File" Version="1.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>
 

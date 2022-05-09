@@ -10,7 +10,7 @@
     <!-- Making sure the library code doens't have higher package requirement -->
     <PackageReference Include="Microsoft.Extensions.Logging" Version="3.1.24" />
 
-    <PackageReference Include="CodeWithSaar.Extensions.Logging.File" Version="1.0.0-beta6" />
+    <PackageReference Include="CodeWithSaar.Extensions.Logging.File" Version="1.0.0" />
   </ItemGroup>
 
   <ItemGroup>

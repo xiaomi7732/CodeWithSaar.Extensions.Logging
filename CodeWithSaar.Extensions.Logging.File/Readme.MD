@@ -7,7 +7,7 @@
 * Add [NuGet Package](https://www.nuget.org/packages/CodeWithSaar.Extensions.Logging.File):
 
     ```csharp
-    dotnet add package CodeWithSaar.Extensions.Logging.File --prerelease
+    dotnet add package CodeWithSaar.Extensions.Logging.File
     ```
 
 * In ASP.NET Core project, enable the logging provider:
