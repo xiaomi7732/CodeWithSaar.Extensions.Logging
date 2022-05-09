@@ -1,4 +1,4 @@
-name: CodeWithSaar.Extensions.Logging.File Beta Package
+name: CodeWithSaar.Extensions.Logging.File Stable Package
 
 on:
   push:
