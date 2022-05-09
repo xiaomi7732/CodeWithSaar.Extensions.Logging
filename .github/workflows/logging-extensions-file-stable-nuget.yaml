@@ -3,7 +3,7 @@ name: CodeWithSaar.Extensions.Logging.File Stable Package
 on:
   push:
     tags:
-      - "^v[0-9]+.[0-9]+.[0-9]+$"
+      - "v[0-9]+.[0-9]+.[0-9]+"
 jobs:
   build:
     runs-on: ubuntu-latest
