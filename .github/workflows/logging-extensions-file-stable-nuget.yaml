@@ -8,24 +8,25 @@ jobs:
   build:
     runs-on: ubuntu-latest
     timeout-minutes: 15
-    # Only runs on main branch
-    if: github.ref == 'refs/heads/main'
     steps:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Set VERSION variable from tag
-        run: echo "VERSION=${GITHUB_REF/refs\/tags\/v/}" >> $GITHUB_ENV
+      - name: Verify commit exists in origin/main
+        run: git branch --remote --contains
 
-      - name: Setup .NET
-        uses: actions/setup-dotnet@v2
-        with:
-          dotnet-version: 6.x
+      # - name: Set VERSION variable from tag
+      #   run: echo "VERSION=${GITHUB_REF/refs\/tags\/v/}" >> $GITHUB_ENV
 
-      - name: Pack
-        run: dotnet pack CodeWithSaar.Extensions.Logging.File/CodeWithSaar.Extensions.Logging.File.csproj --configuration Release /p:Version=${VERSION} --output .
+      # - name: Setup .NET
+      #   uses: actions/setup-dotnet@v2
+      #   with:
+      #     dotnet-version: 6.x
 
-      - name: Push
-        run: dotnet nuget push CodeWithSaar.Extensions.Logging.File.${VERSION}.nupkg --source https://api.nuget.org/v3/index.json --api-key ${NUGET_PAT}
-        env:
-          NUGET_PAT: ${{ secrets.NUGET_PAT }}
+      # - name: Pack
+      #   run: dotnet pack CodeWithSaar.Extensions.Logging.File/CodeWithSaar.Extensions.Logging.File.csproj --configuration Release /p:Version=${VERSION} --output .
+
+      # - name: Push
+      #   run: dotnet nuget push CodeWithSaar.Extensions.Logging.File.${VERSION}.nupkg --source https://api.nuget.org/v3/index.json --api-key ${NUGET_PAT}
+      #   env:
+      #     NUGET_PAT: ${{ secrets.NUGET_PAT }}
