@@ -2,7 +2,7 @@
 
 This is the repository to put custom logging providers like:
 
-* [File](./CodeWithSaar.Extensions.Logging.File/Readme.MD) [![Build example](https://github.com/xiaomi7732/CodeWithSaar.Extensions.Logging/actions/workflows/nightly-example.yaml/badge.svg)](https://github.com/xiaomi7732/CodeWithSaar.Extensions.Logging/actions/workflows/nightly-example.yaml)
+* [CodeWithSaar.Extensions.Logging.File](./CodeWithSaar.Extensions.Logging.File/Readme.MD) [![Build example](https://github.com/xiaomi7732/CodeWithSaar.Extensions.Logging/actions/workflows/nightly-example.yaml/badge.svg)](https://github.com/xiaomi7732/CodeWithSaar.Extensions.Logging/actions/workflows/nightly-example.yaml)
 
 * Android logcat (works with Xamarin.Android)
 
