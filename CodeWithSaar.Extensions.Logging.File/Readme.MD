@@ -1,5 +1,7 @@
 # CodeWithSaar.Extensions.Logging.File
 
+[![Build example](https://github.com/xiaomi7732/CodeWithSaar.Extensions.Logging/actions/workflows/nightly-example.yaml/badge.svg)](https://github.com/xiaomi7732/CodeWithSaar.Extensions.Logging/actions/workflows/nightly-example.yaml) ![Package-Badge](https://img.shields.io/nuget/v/CodeWithSaar.Extensions.Logging.File?style=plastic) ![Download-Badge](https://img.shields.io/nuget/dt/CodeWithSaar.Extensions.Logging.File?style=plastic)
+
 `CodeWithSaar.Extensions.Logging.File` is a very easy to use, lightweight file logger provider implementation for Microsoft.Extensions.Logging. Start to use it with ASP.NET Core by one line of code.
 
 ## Getting Started
