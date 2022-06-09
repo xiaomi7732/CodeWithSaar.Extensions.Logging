@@ -23,7 +23,7 @@
     ...
     ```
 
-    Check out the [example project](https://github.com/xiaomi7732/CodeWithSaar.Extensions.Logging/tree/main/examples/WebAPIExample) for WebAPI.
+    Check out the [example projects](https://github.com/xiaomi7732/CodeWithSaar.Extensions.Logging/tree/main/examples/) for Console or other types of project.
 
 * Run the application and see the log output to `output.log`, and you are expected to see log entries like this:
 
